@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoalChampion - Academic Workspace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <style>
+    /* تصميم احترافي داكن (Professional Dark UI) */
+    :root {
+      --bg-main: #0f172a;      /* Slate 900 */
+      --bg-card: #1e293b;      /* Slate 800 */
+      --border-color: #334155; /* Slate 700 */
+      --primary: #3b82f6;      /* Blue 500 */
+      --primary-hover: #2563eb;/* Blue 600 */
+      --accent: #10b981;       /* Emerald 500 */
+      --text-main: #f8fafc;    /* Slate 50 */
+      --text-muted: #94a3b8;   /* Slate 400 */
+      --danger: #ef4444;       /* Red 500 */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-main); color: var(--text-main);
+      font-family: 'Cairo', sans-serif; line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-main); }
+    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+    /* Navigation */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+    }
+
+    header h2 { font-weight: 800; font-size: 1.4rem; color: #fff; display: flex; align-items: center; gap: 8px;}
+    header h2 span { color: var(--primary); }
+
+    nav { display: flex; gap: 5px; }
+    nav a {
+      color: var(--text-muted); text-decoration: none; font-weight: 600;
+      padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    nav a:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
+    nav a.active { color: #fff; background: var(--primary); }
+
+    /* Layout */
+    main { padding: 40px 5%; max-width: 1000px; margin: 0 auto; padding-bottom: 100px; }
+    .section { display: none; animation: fadeUp 0.4s ease forwards; }
+    .section.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Cards & Inputs */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 16px; padding: 30px; margin-bottom: 25px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .card h3 { font-weight: 700; font-size: 1.25rem; margin-bottom: 20px; color: #fff; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
+
+    input, textarea {
+      width: 100%; padding: 14px 16px; border-radius: 10px;
+      background: #0f172a; border: 1px solid var(--border-color);
+      color: #fff; font-family: inherit; font-size: 0.95rem; margin-bottom: 15px;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--primary); }
+    
+    button {
+      padding: 12px 24px; border: none; border-radius: 10px;
+      background: var(--primary); color: #fff; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    button:hover { background: var(--primary-hover); }
+    button.secondary { background: var(--border-color); color: var(--text-main); }
+    button.secondary:hover { background: #475569; }
+    button.danger { background: var(--danger); }
+    button.danger:hover { background: #dc2626; }
+
+    /* Custom Timer Controls */
+    .timer-setup { display: flex; gap: 15px; margin-bottom: 20px; justify-content: center; }
+    .timer-setup input { width: 100px; text-align: center; font-size: 1.2rem; font-weight: bold; margin-bottom: 0; }
+    .quick-presets { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
+    .quick-presets button { padding: 8px 16px; font-size: 0.85rem; background: var(--bg-main); border: 1px solid var(--border-color); }
+    .quick-presets button:hover { border-color: var(--primary); background: rgba(59, 130, 246, 0.1); }
+    
+    .timer-display {
+      font-size: 5rem; font-weight: 800; text-align: center; margin: 20px 0;
+      font-variant-numeric: tabular-nums; color: #fff; letter-spacing: 2px;
+    }
+    .timer-display.running { color: var(--accent); }
+
+    /* Video Co-Study & Spotify */
+    .embed-container {
+      background: var(--bg-main); border: 1px solid var(--border-color);
+      border-radius: 12px; padding: 15px; margin-top: 25px;
+    }
+    iframe { border-radius: 8px; width: 100%; border: none; }
+
+    /* Lists & Grids */
+    li {
+      background: var(--bg-main); padding: 16px 20px; border-radius: 10px;
+      margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
+      border: 1px solid var(--border-color);
+    }
+    .done .task-text { text-decoration: line-through; color: var(--text-muted); }
+    .task-text { font-weight: 600; font-size: 1rem; }
+
+    .habit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); gap: 8px; }
+    .habit-day {
+      aspect-ratio: 1; border-radius: 8px; background: var(--bg-main); border: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; color: var(--text-muted); transition: all 0.2s;
+    }
+    .habit-day.done { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    /* Shop Grid */
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .item-card { background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: right; }
+    .item-card h4 { font-size: 1.1rem; color: #fff; margin-bottom: 8px; }
+    .item-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; }
+
+    /* Toasts */
+    #toast-container { position: fixed; bottom: 20px; left: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+    .toast {
+      background: #1e293b; border-right: 4px solid var(--primary); padding: 15px 20px;
+      border-radius: 8px; color: #fff; font-size: 0.9rem; font-weight: 600;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 15px; padding: 15px; }
+      nav { overflow-x: auto; width: 100%; justify-content: flex-start; padding-bottom: 5px; }
+      nav a { white-space: nowrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2><span>Goal</span>Champion</h2>
+    <nav id="mainNav">
+      <a data-target="profile" class="active">الملف الأكاديمي</a>
+      <a data-target="plan">خطة العمل</a>
+      <a data-target="session">التركيز والمحاكاة</a>
+      <a data-target="habit">المتابعة</a>
+      <a data-target="shop">أدوات التخصص</a>
+      <a data-target="community">المجتمع</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- القسم الأكاديمي -->
+    <section id="profile" class="section active">
+      <div class="card">
+        <h3>إعدادات الرؤية الأكاديمية</h3>
+        <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-size:0.9rem;">الاسم أو اللقب:</label>
+        <input type="text" id="pNameInput" placeholder="مثال: م. خالد، د. سارة">
+        
+        <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-size:0.9rem;">المسار الأكاديمي / المنحة المستهدفة:</label>
+        <input type="text" id="pDreamInput" placeholder="مثال: القبول في منحة UWC، دراسة الهندسة، مبادرة تنموية">
+        
+        <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-size:0.9rem;">رقم واتساب الشريك الدراسي (لإرسال دعوات المذاكرة):</label>
+        <input type="number" id="pPhoneInput" placeholder="رقم الهاتف متضمناً كود الدولة (مثال: 201xxxxxxxxx)">
+        
+        <button onclick="App.Profile.save()">حفظ البيانات وتحديث المسار</button>
+      </div>
+      <div class="card">
+        <h3>الحالة الأكاديمية</h3>
+        <p style="margin-bottom: 10px;"><strong>الاسم:</strong> <span id="pName" style="color:var(--text-main);"></span></p>
+        <p style="margin-bottom: 10px;"><strong>الرؤية:</strong> <span id="pDream" style="color:var(--primary);"></span></p>
+        <p style="margin-bottom: 10px; font-size: 1.1rem;"><strong>رصيد الإنجاز:</strong> <span id="pPoints" style="color:var(--accent); font-weight:bold;"></span> نقطة</p>
+        <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+          <strong style="color:var(--text-muted); font-size:0.9rem; display:block; margin-bottom:10px;">الأدوات الاحترافية المفتوحة:</strong>
+          <ul id="pItems" style="display:flex; flex-wrap:wrap; gap:10px; list-style:none;"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- الخطة -->
+    <section id="plan" class="section">
+      <div class="card">
+        <h3>أهداف اليوم الدراسية</h3>
+        <div style="display: flex; gap: 10px; align-items: stretch; margin-bottom: 20px;">
+          <input type="text" id="taskInput" placeholder="مثال: مراجعة فصل الفيزياء، دراسة 50 كلمة إنجليزية..." style="margin-bottom:0;">
+          <button onclick="App.Tasks.add()">إدراج</button>
+        </div>
+        <ul id="taskList"></ul>
+      </div>
+    </section>
+
+    <!-- التركيز والمحاكاة -->
+    <section id="session" class="section">
+      <div class="card">
+        <h3>مؤقت العمل العميق (Deep Work)</h3>
+        
+        <div class="quick-presets">
+          <button onclick="App.Timer.setPreset(25)">بومودورو (25د)</button>
+          <button onclick="App.Timer.setPreset(50)">جلسة مراجعة (50د)</button>
+          <button onclick="App.Timer.setPreset(90)">دراسة مكثفة (90د)</button>
+        </div>
+
+        <div class="timer-setup">
+          <input type="number" id="inputHours" placeholder="ساعات" min="0" max="24" value="0">
+          <span style="font-size:2rem; font-weight:bold; color:var(--text-muted);">:</span>
+          <input type="number" id="inputMins" placeholder="دقائق" min="0" max="59" value="25">
+        </div>
+
+        <div class="timer-display" id="timer">00:25:00</div>
+        
+        <div style="display:flex; justify-content:center; gap:10px;">
+          <button onclick="App.Timer.start()">بدء التركيز</button>
+          <button class="secondary" onclick="App.Timer.pause()">إيقاف مؤقت</button>
+          <button class="danger" onclick="App.Timer.reset()">إنهاء</button>
+        </div>
+
+        <div class="embed-container">
+          <h4 style="font-size:0.95rem; margin-bottom:10px; color:var(--text-muted);">عزل المشتتات (Lo-Fi Study Beats)</h4>
+          <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZeKCadgRdKQ?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>غرفة المذاكرة المشتركة (Co-Study Room)</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px;">
+          الغرفة مجهزة للعمل المشترك. أرسل دعوة لشريكك الدراسي، ثم اضغط على "بدء جلسة الفيديو" للاتصال عندما تكون مستعداً.
+        </p>
+        <button class="secondary" onclick="App.CoStudy.inviteWhatsApp()" style="margin-bottom: 20px;">
+          دعوة الشريك عبر WhatsApp 💬
+        </button>
+        
+        <!-- حاوية الغرفة الاختيارية -->
+        <div id="videoContainer" class="embed-container" style="padding:20px; text-align:center; height:400px; display:flex; flex-direction:column; justify-content:center; align-items:center; border: 2px dashed var(--border-color);">
+          <p style="color:var(--text-muted); margin-bottom:20px; font-size:1.1rem;">الكاميرا والميكروفون في وضع الإيقاف حالياً لتوفير الإنترنت.</p>
+          <button onclick="App.CoStudy.startVideo()" style="background:var(--accent); font-size:1.1rem; padding:15px 30px;">📷 بدء جلسة الفيديو الآن</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- المتابعة (العادات) -->
+    <section id="habit" class="section">
+      <div class="card">
+        <h3>مصفوفة الانضباط (تتبع 30 يوماً)</h3>
+        <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom:20px;">الاستمرارية تبني المعجزات. قم بتوثيق إنجازك اليومي.</p>
+        <div id="habitTracker" class="habit-grid"></div>
+      </div>
+    </section>
+
+    <!-- المتجر الأكاديمي -->
+    <section id="shop" class="section">
+      <div class="card">
+        <h3>متجر الأدوات الاحترافية</h3>
+        <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom:25px;">استثمر نقاط تركيزك لتفعيل أدوات تعكس طموحك المهني.</p>
+        
+        <div class="shop-grid" id="shopList"></div>
+      </div>
+    </section>
+
+    <!-- المجتمع Formspree -->
+    <section id="community" class="section">
+      <div class="card">
+        <h3>مجتمع الإنجاز الأكاديمي</h3>
+        <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom:20px;">شارك ملخصاً لما تعلمته اليوم، أو نصيحة لزملائك لتوسيع دائرة الفائدة.</p>
+        <textarea id="postInput" rows="4" placeholder="الرسالة أو الملخص..."></textarea>
+        <button onclick="App.Community.addPost()" id="submitPostBtn" style="width: 100%; justify-content:center;">نشر ومشاركة</button>
+        
+        <div id="posts" style="margin-top: 30px;"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-container"></div>
+
+  <script>
+    const FORMSPREE_URL = "https://formspree.io/f/xrewkvvq";
+
+    const App = {
+      user: {
+        name: localStorage.getItem("gc_name") || "",
+        dream: localStorage.getItem("gc_dream") || "",
+        phone: localStorage.getItem("gc_phone") || "",
+        points: parseInt(localStorage.getItem("gc_points") || "0", 10),
+        owned: JSON.parse(localStorage.getItem("gc_owned") || "[]"),
+        tasks: JSON.parse(localStorage.getItem("gc_tasks") || "[]"),
+        habits: JSON.parse(localStorage.getItem("gc_habits") || "[]").length ? JSON.parse(localStorage.getItem("gc_habits")) : Array(30).fill(false),
+        posts: JSON.parse(localStorage.getItem("gc_posts") || "[]")
+      },
+      
+      saveData: function() {
+        localStorage.setItem("gc_name", this.user.name);
+        localStorage.setItem("gc_dream", this.user.dream);
+        localStorage.setItem("gc_phone", this.user.phone);
+        localStorage.setItem("gc_points", this.user.points.toString());
+        localStorage.setItem("gc_owned", JSON.stringify(this.user.owned));
+        localStorage.setItem("gc_tasks", JSON.stringify(this.user.tasks));
+        localStorage.setItem("gc_habits", JSON.stringify(this.user.habits));
+        localStorage.setItem("gc_posts", JSON.stringify(this.user.posts));
+      },
+
+      showToast: function(msg, isError = false) {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        if(isError) toast.style.borderRightColor = "var(--danger)";
+        toast.textContent = msg;
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      },
+
+      init: function() {
+        const links = document.querySelectorAll('#mainNav a');
+        links.forEach(link => {
+          link.addEventListener('click', (e) => {
+            links.forEach(l => l.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            const targetId = e.currentTarget.getAttribute('data-target');
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(targetId).classList.add('active');
+            window.scrollTo(0,0);
+          });
+        });
+
+        this.Profile.render();
+        this.Tasks.render();
+        this.Habits.render();
+        this.Shop.render();
+        
+        if(this.user.posts.length === 0) {
+            this.user.posts = [
+                {id: 1, author: "إدارة المنصة", content: "أهلاً بك في مساحة العمل المشتركة. استثمر وقتك وحقق أهدافك!", likes: 5, likedBy: []}
+            ];
+            this.saveData();
+        }
+        this.Community.render();
+      }
+    };
+
+    App.Profile = {
+      save: function() {
+        App.user.name = document.getElementById("pNameInput").value.trim();
+        App.user.dream = document.getElementById("pDreamInput").value.trim();
+        App.user.phone = document.getElementById("pPhoneInput").value.trim();
+        App.saveData();
+        this.render(); 
+        confetti({ particleCount: 50, spread: 60, origin: { y: 0.8 }});
+        App.showToast("تم تحديث الرؤية الأكاديمية بنجاح");
+      },
+      render: function() {
+        document.getElementById("pNameInput").value = App.user.name;
+        document.getElementById("pDreamInput").value = App.user.dream;
+        document.getElementById("pPhoneInput").value = App.user.phone;
+        
+        document.getElementById("pName").textContent = App.user.name || "لم يُحدد";
+        document.getElementById("pDream").textContent = App.user.dream || "لم يُحدد";
+        document.getElementById("pPoints").textContent = App.user.points;
+        
+        const list = document.getElementById("pItems");
+        list.innerHTML = "";
+        if(App.user.owned.length === 0) { 
+          list.innerHTML = "<li style='padding:0; background:transparent; border:none; color:var(--text-muted); font-size:0.9rem;'>لا توجد أدوات مفعلة حالياً.</li>"; 
+        } else {
+          App.user.owned.forEach(i => {
+            list.innerHTML += `<li style="background:var(--bg-main); border:1px solid var(--primary); color:var(--primary); padding:6px 12px; border-radius:6px; font-size:0.85rem; margin:0;">${i}</li>`;
+          });
+        }
+      }
+    };
+
+    App.Tasks = {
+      add: function() {
+        const input = document.getElementById("taskInput");
+        if(!input.value.trim()) return App.showToast("يرجى كتابة نص المهمة", true);
+        App.user.tasks.push({text: input.value.trim(), done: false});
+        input.value = "";
+        App.saveData(); this.render();
+      },
+      toggle: function(i) {
+        if(!App.user.tasks[i].done) {
+            App.user.tasks[i].done = true;
+            App.user.points += 10;
+            App.showToast("تم الإنجاز! +10 نقاط");
+        } else {
+            App.user.tasks[i].done = false;
+        }
+        App.saveData(); this.render(); App.Profile.render(); App.Shop.render();
+      },
+      delete: function(i) {
+        App.user.tasks.splice(i, 1);
+        App.saveData(); this.render();
+      },
+      render: function() {
+        const box = document.getElementById("taskList");
+        box.innerHTML = "";
+        if(!App.user.tasks.length) { box.innerHTML = `<p style="text-align:center; color:var(--text-muted); font-size:0.9rem;">لا توجد مهام مدرجة.</p>`; return; }
+        
+        App.user.tasks.forEach((t, i) => {
+          box.innerHTML += `
+            <li class="${t.done ? 'done' : ''}">
+              <span class="task-text">${t.text}</span>
+              <div style="display:flex; gap:8px;">
+                <button style="padding:6px 12px; font-size:0.85rem;" onclick="App.Tasks.toggle(${i})">${t.done ? 'تراجع' : 'إتمام'}</button>
+                <button class="danger" style="padding:6px 12px; font-size:0.85rem;" onclick="App.Tasks.delete(${i})">حذف</button>
+              </div>
+            </li>`;
+        });
+      }
+    };
+
+    App.Timer = {
+      interval: null, remaining: 0, running: false, totalSet: 0,
+      
+      format: function(sec) {
+        const h = Math.floor(sec / 3600);
+        const m = Math.floor((sec % 3600) / 60);
+        const s = sec % 60;
+        return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      },
+      updateDisplay: function() {
+        document.getElementById("timer").textContent = this.format(this.remaining);
+      },
+      setPreset: function(mins) {
+        if(this.running) return App.showToast("أوقف المؤقت الحالي أولاً", true);
+        document.getElementById("inputHours").value = 0;
+        document.getElementById("inputMins").value = mins;
+        this.remaining = mins * 60;
+        this.updateDisplay();
+      },
+      start: function() {
+        if(this.running) return;
+        
+        if(this.remaining === 0) {
+          const h = parseInt(document.getElementById("inputHours").value) || 0;
+          const m = parseInt(document.getElementById("inputMins").value) || 0;
+          this.remaining = (h * 3600) + (m * 60);
+          this.totalSet = this.remaining;
+          if(this.remaining === 0) return App.showToast("الرجاء تحديد وقت الجلسة", true);
+        }
+
+        this.running = true;
+        document.getElementById("timer").classList.add("running");
+        
+        this.interval = setInterval(() => {
+          if(this.remaining > 0) { 
+            this.remaining--; 
+            this.updateDisplay(); 
+          } else {
+            this.complete();
+          }
+        }, 1000);
+      },
+      pause: function() {
+        clearInterval(this.interval); this.running = false;
+        document.getElementById("timer").classList.remove("running");
+      },
+      reset: function() {
+        clearInterval(this.interval); this.running = false; this.remaining = 0;
+        document.getElementById("timer").classList.remove("running");
+        this.updateDisplay();
+      },
+      complete: function() {
+        this.reset();
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }});
+        const pointsEarned = Math.floor(this.totalSet / 60) * 2;
+        App.user.points += pointsEarned;
+        App.saveData(); App.Profile.render(); App.Shop.render();
+        App.showToast(`جلسة ممتازة! اكتسبت ${pointsEarned} نقطة.`);
+      }
+    };
+
+    App.CoStudy = {
+      inviteWhatsApp: function() {
+        const phone = App.user.phone;
+        if(!phone) {
+          App.showToast("الرجاء إدخال رقم هاتف شريكك في صفحة (الملف الأكاديمي) أولاً.", true);
+          return;
+        }
+        const message = encodeURIComponent("مرحباً! لقد فتحت غرفة المذاكرة المشتركة على GoalChampion. انضم إلي الآن عبر الرابط: https://meet.jit.si/GoalChampion_StudyRoom_2026");
+        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+      },
+      startVideo: function() {
+        const container = document.getElementById("videoContainer");
+        container.style.padding = "0";
+        container.style.border = "none";
+        
+        // تم دمج إعدادات إغلاق الكاميرا والمايك افتراضياً في رابط Jitsi
+        const jitsiUrl = "https://meet.jit.si/GoalChampion_StudyRoom_2026#config.startWithVideoMuted=true&config.startWithAudioMuted=true&config.prejoinPageEnabled=true";
+        
+        container.innerHTML = `<iframe allow="camera; microphone; fullscreen; display-capture" src="${jitsiUrl}" style="height: 100%; width: 100%; border: 0px;"></iframe>`;
+      }
+    };
+
+    App.Habits = {
+      toggle: function(i) {
+        App.user.habits[i] = !App.user.habits[i];
+        if(App.user.habits[i]) {
+          App.user.points += 5; 
+          App.showToast("عمل رائع! حافظ على السلسلة (+5 نقاط)");
+        }
+        App.saveData(); this.render(); App.Profile.render(); App.Shop.render();
+      },
+      render: function() {
+        const grid = document.getElementById("habitTracker"); grid.innerHTML = "";
+        App.user.habits.forEach((isDone, i) => {
+          const cls = isDone ? "habit-day done" : "habit-day";
+          grid.innerHTML += `<div class="${cls}" onclick="App.Habits.toggle(${i})">${i+1}</div>`;
+        });
+      }
+    };
+
+    App.Shop = {
+      catalog: [
+        {name:"لقب الباحث المتميز", price:100, desc:"يضاف اللقب إلى هويتك الأكاديمية كدليل على تفانيك."},
+        {name:"الوضع المظلم المتطور", price:300, desc:"فتح ثيم ألوان حصري للوحة التحكم الخاصة بك."},
+        {name:"شهادة الإنجاز الرقمية", price:500, desc:"شارة رقمية لالتزامك لمدة 30 يوماً متواصلة."},
+        {name:"أدوات التخطيط القيادي", price:150, desc:"إضافة ميزة المشاريع المتقدمة (قريباً)."}
+      ],
+      buy: function(name, price) {
+        if(App.user.points < price) return App.showToast("رصيدك غير كافٍ.", true);
+        if(App.user.owned.includes(name)) return App.showToast("تم شراء هذه الأداة مسبقاً.", true);
+        
+        App.user.points -= price;
+        App.user.owned.push(name);
+        App.saveData(); App.Profile.render(); this.render();
+        confetti();
+        App.showToast(`تم تفعيل: ${name}`);
+      },
+      render: function() {
+        const list = document.getElementById("shopList");
+        list.innerHTML = this.catalog.map(item => {
+          const owned = App.user.owned.includes(item.name);
+          return `
+            <div class="item-card">
+              <h4>${item.name}</h4>
+              <p>${item.desc}</p>
+              <div style="color:var(--gold); font-weight:bold; margin-bottom:15px; font-size:1.1rem;">${item.price} نقطة</div>
+              <button onclick="App.Shop.buy('${item.name}', ${item.price})" ${owned ? 'disabled' : ''} style="width:100%; justify-content:center;">
+                ${owned ? 'مفعلة' : 'شراء وتفعيل'}
+              </button>
+            </div>
+          `;
+        }).join('');
+      }
+    };
+
+    App.Community = {
+      addPost: async function() {
+        const input = document.getElementById("postInput");
+        const text = input.value.trim();
+
+        if(!App.user.name) return App.showToast("يجب إعداد اسمك في الملف الأكاديمي لتتمكن من النشر.", true);
+        if(!text) return App.showToast("الرسالة فارغة.", true);
+
+        const btn = document.getElementById("submitPostBtn");
+        btn.textContent = "جاري النشر...";
+        btn.disabled = true;
+
+        try {
+          await fetch(FORMSPREE_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({
+              الاسم: App.user.name,
+              المسار: App.user.dream,
+              المحتوى: text,
+              التاريخ: new Date().toLocaleString('ar-EG')
+            })
+          });
+
+          App.user.posts.unshift({ id: Date.now(), author: App.user.name, content: text, likes: 0, likedBy: [] });
+          App.saveData(); this.render(); input.value = "";
+          App.showToast("تم نشر مشاركتك وإرسالها للمنصة بنجاح!");
+        } catch (error) {
+          App.showToast("حدث خطأ في الشبكة، جرب لاحقاً.", true);
+        } finally {
+          btn.textContent = "نشر ومشاركة"; btn.disabled = false;
+        }
+      },
+      like: function(id) {
+        const post = App.user.posts.find(p => p.id === id);
+        if(!post) return;
+        
+        const idx = post.likedBy.indexOf(App.user.name);
+        if(idx === -1) {
+          if(!App.user.name) return App.showToast("سجل اسمك للإعجاب.", true);
+          post.likedBy.push(App.user.name); post.likes++;
+        } else {
+          post.likedBy.splice(idx, 1); post.likes--;
+        }
+        App.saveData(); this.render();
+      },
+      render: function() {
+        const box = document.getElementById("posts");
+        if(!App.user.posts.length) { box.innerHTML = `<p style="text-align:center; color:var(--text-muted);">لا توجد مشاركات بعد.</p>`; return; }
+        
+        box.innerHTML = App.user.posts.map(p => {
+          const liked = p.likedBy && p.likedBy.includes(App.user.name);
+          return `
+            <div style="background:var(--bg-main); padding:20px; border-radius:12px; border:1px solid var(--border-color); margin-bottom:15px;">
+              <p style="margin-bottom:15px; font-size:1.05rem;">${p.content}</p>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:10px;">
+                <span style="color:var(--primary); font-weight:bold; font-size:0.9rem;">👤 ${p.author}</span>
+                <button class="secondary" onclick="App.Community.like(${p.id})" style="padding:6px 12px; font-size:0.85rem; ${liked ? 'border:1px solid var(--danger); color:var(--danger);' : ''}">
+                  ${liked ? '❤️' : '🤍'} ${p.likes}
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    };
+
+    window.onload = () => App.init();
+  </script>
+</body>
+</html>
