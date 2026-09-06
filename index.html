@@ -86,6 +86,30 @@ label.lbl{display:block;font-size:12px;color:var(--mut);margin:10px 0 5px}
 #qbox .by{font-size:11.5px;color:var(--gold);margin-top:8px}
 #qbtns{display:flex;gap:8px;margin-top:12px}
 #qbtns .btn{padding:6px 13px;font-size:12px}
+/* ===== group whatsapp ===== */
+#groupCard{border-color:rgba(37,211,102,.35);background:linear-gradient(135deg,rgba(37,211,102,.08),rgba(240,180,41,.04))}
+#groupCard>h3{color:#4be389;border-bottom-color:rgba(37,211,102,.25)}
+#groupCard>h3 svg{width:16px;height:16px}
+#gChips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.gchip{display:inline-flex;align-items:center;gap:6px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.4);color:#7ee8a5;border-radius:99px;padding:5px 13px;font-size:11.5px;cursor:pointer;font-family:inherit;transition:background .15s}
+.gchip:hover{background:rgba(37,211,102,.25)}
+#gLink{margin-top:12px;font-size:11px;color:var(--mut);direction:ltr;text-align:left;word-break:break-all;line-height:1.8}
+#gLink a{color:#4be389;text-decoration:none;border-bottom:1px dotted rgba(75,227,137,.5)}
+#gLink .glt{direction:rtl;color:var(--mut2)}
+#waBar{position:fixed;top:52px;right:0;left:0;z-index:59;display:none;align-items:center;gap:10px;padding:7px 14px;background:linear-gradient(90deg,rgba(37,211,102,.18),rgba(10,14,26,.95));border-bottom:1px solid rgba(37,211,102,.5);backdrop-filter:blur(10px);font-size:12px}
+#waBar.on{display:flex}
+#waBar .wbdot{width:8px;height:8px;border-radius:50%;background:#25d366;flex:0 0 auto;animation:wbp 1.6s infinite}
+@keyframes wbp{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 9px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+#waBar .wbt{flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#c9f7d7}
+#waBar .wbt b{color:#25d366;font-variant-numeric:tabular-nums}
+#waBar .wa{background:linear-gradient(180deg,#4be389,#1faa53);color:#04170c;border:none;border-radius:9px;padding:6px 12px;font-weight:700;font-size:11.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit}
+#waBar .wa svg{width:13px;height:13px}
+#waBar .btn{padding:6px 12px;font-size:11px}
+body.haswabar main{padding-top:104px}
+li.citem .call{text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+li.citem .call svg{width:11px;height:11px}
+#waMMsg{direction:rtl;text-align:right;font-size:12px;line-height:1.9;min-height:96px;resize:vertical}
+#waMUrl{direction:ltr;text-align:left}
 /* timer ring */
 #timerCard{position:relative;text-align:center;padding:26px 16px 20px}
 #ringWrap{position:relative;width:250px;height:250px;margin:6px auto 10px}
@@ -151,10 +175,9 @@ li.citem .cp{font-size:11.5px;color:var(--mut);direction:ltr;text-align:right}
 li.citem .call{background:none;border:1px solid var(--line2);color:var(--ok);border-radius:8px;padding:5px 10px;font-size:11px;cursor:pointer;flex:0 0 auto}
 li.citem .call:hover{border-color:var(--ok)}
 /* video room */
-#roomWrap{position:relative;border:1px solid var(--line2);border-radius:14px;overflow:hidden}
-#roomWrap iframe{display:block;width:100%;height:420px;border:0}
-#roomOff{padding:26px 18px;text-align:center}
-#roomOff p{font-size:12.5px;background:var(--bg2);color:var(--mut);border-radius:9px;padding:9px 12px;margin-bottom:14px}
+#zoomCard{border-color:rgba(54,113,241,.35);background:linear-gradient(135deg,rgba(54,113,241,.08),rgba(240,180,41,.03))}
+#zoomCard>h3{color:#7db4ff;border-bottom-color:rgba(54,113,241,.3)}
+#zoomCard>h3 svg{width:16px;height:16px}
 /* settings toggles */
 .tgl{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)}
 .tgl:last-child{border-bottom:none}
@@ -237,16 +260,8 @@ footer b{color:var(--gold)}
     <div class="sub">نظام مذاكرة صارم يمنع المشتتات ويصنع منك بطلًا</div>
     <div id="obSteps"><i class="act"></i><i></i><i></i><i></i></div>
     <div class="obstep act" data-ob="0">
-      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>عقد الشرف</h4>
-      <p>هنا لا مكان للتساهل: يُراقب الانضباط، ويُسجَّل كل غياب إرادي عن الصفحة، ويُخصم من رصيد انضباطك. المذاكرة الجادة تُكافأ، والهروب له ثمن. أنا معك — لكن دون تساهل.</p>
-    </div>
-    <div class="obstep" data-ob="1">
-      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>الجلسات والاختبارات</h4>
-      <p>جلسات بومودورو صارمة بمؤقت لا يُخدع: الإيقاف المؤقت يجمّد العد تمامًا، والمغادرة الإرادية تُرصد وتُوثّق. وبين الجلسات المتتالية اختبار تثبيت قصير يُحسب في سجلك.</p>
-    </div>
-    <div class="obstep" data-ob="2">
-      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>رفيق الفيديو والتذكير</h4>
-      <p>غرفة مذاكرة مشتركة بالفيديو مع شريكك تدعوه لها برسالة واتساب تلقائية، وتذكير يومي يصلك بالإشعار وقت مذاكرتك حتى لو كان الموقع مغلقًا — بشرط منح الإذن مرة واحدة.</p>
+      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>رفقاء المذاكرة والتذكير اليومي</h4>
+      <p>من تبويب «الرفقاء» اربط أرقام رفاقك في واتساب وابدأ جلسة جماعية بضغطة واحدة: تظهر الجلسة في شريط أعلى الموقع طوال وقتها، وتصلهم دعوة تلقائية تحمل المهمة والوقت ورابط المجموعة أو اجتماع زووم. وتذكير يومي يصلك بالإشعار وقت مذاكرتك حتى لو كان الموقع مغلقًا — بشرط منح الإذن مرة واحدة.</p>
     </div>
     <div class="obstep" data-ob="3">
       <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>الأرقام لا تكذب</h4>
@@ -267,6 +282,14 @@ footer b{color:var(--gold)}
   <button id="notifBtn"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span id="notifTxt">تذكير يومي</span></button>
 </header>
 
+<!-- ============ LIVE GROUP BAR (WhatsApp) ============ -->
+<div id="waBar">
+  <span class="wbdot"></span>
+  <span class="wbt">جلسة جماعية عبر واتساب — <b id="wbTask">مذاكرة</b> · <b id="wbT">—</b></span>
+  <button class="wa" id="wbOpen"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" style="flex:0 0 auto"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span id="wbOpenTx">فتح واتساب</span></button>
+  <button class="btn ghost sm" id="wbEnd">إنهاء</button>
+</div>
+
 <!-- ============ MAIN ============ -->
 <main>
 
@@ -274,6 +297,7 @@ footer b{color:var(--gold)}
   <section id="view-home" class="act">
     <div id="welcome">جاهز للجلسة؟</div>
     <div id="dateStr"></div>
+
     <div class="statgrid">
       <div class="stat"><b id="stMin">0</b><span>دقيقة اليوم</span></div>
       <div class="stat"><b id="stChain">0</b><span>سلسلة الجلسات</span></div>
@@ -371,7 +395,7 @@ footer b{color:var(--gold)}
   <section id="view-mates">
     <div class="card">
       <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.38 8.38 0 0 1-4-1L3 20l1-5.5a8.38 8.38 0 0 1-1-4 8.5 8.5 0 1 1 17 0z"/></svg>شركاء المذاكرة (واتساب)</h3>
-      <p class="note" style="margin-bottom:14px">احفظ أرقام رفاقك، ثم ادعُ أيًّا منهم لغرفة الفيديو برسالة واتساب تلقائية تحمل رابط الغرفة.</p>
+      <p class="note" style="margin-bottom:14px">أضف أرقام رفاقك في واتساب (مع كود الدولة)، ثم ادعُ أيًّا منهم بضغطة واحدة من قائمته أدناه أو من بطاقة الجلسة الجماعية أعلى هذا التبويب — تُرفَق رسالة الدعوة تلقائيًا بالمهمة والمدة والوقت ورابط المجموعة أو زووم.</p>
       <div class="row wrap" style="margin-bottom:14px">
         <input type="text" id="ctName" placeholder="الاسم (مثال: خالد)" style="flex:1 1 120px">
         <input type="number" id="ctPhone" placeholder="رقم واتساب مع كود الدولة" style="direction:ltr;text-align:right;flex:1 1 180px">
@@ -379,19 +403,48 @@ footer b{color:var(--gold)}
       </div>
       <ul id="ctList"></ul>
     </div>
-    <div class="card">
-      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>غرفة المذاكرة المشتركة (فيديو)</h3>
-      <p class="note">غرفة فيديو مشتركة اختيارية عبر Jitsi — لا تُفتح الكاميرا ولا الميكروفون إلا بيدك، ومراقبة الانضباط تبقى فعّالة أثناء الجلسة.</p>
-      <div id="roomWrap" style="margin-top:12px">
-        <div id="roomOff">
-          <p>الغرفة مغلقة حاليًا. عند فتحها سينضم شريكك من الرابط الذي وصله في واتساب — الكاميرا والمايك مكتومان حتى تفعّلهما بنفسك.</p>
-          <button class="btn blue" id="roomOpenBtn">بدء غرفة الفيديو</button>
+
+    <!-- group whatsapp session (moved from home) -->
+    <div class="card" id="groupCard">
+      <h3><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" style="flex:0 0 auto"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> جلسة المذاكرة الجماعية — واتساب</h3>
+      <div id="gOff">
+        <p class="note" style="margin-bottom:12px">ابدأ جلسة جماعية بضغطة واحدة: تظهر الجلسة في شريط أعلى الموقع طوال وقتها في كل الصفحات، ويصل رفاقك برسالة واتساب جاهزة تحمل المهمة والمدة والوقت ورابط المجموعة — ومن داخل مجموعة واتساب تبدأون مكالمة الفيديو الجماعية بضغطة واحدة.</p>
+        <div class="row wrap">
+          <button class="btn" id="gStart">بدء الجلسة الجماعية</button>
+          <button class="btn ghost" id="gInvite">دعوة الشركاء</button>
         </div>
       </div>
-      <div class="row" style="margin-top:10px">
-        <button class="btn ghost sm" id="roomJoinBtn">فتح الغرفة في تبويب جديد</button>
-        <button class="btn ghost sm" id="roomCloseBtn">إغلاق الغرفة</button>
+      <div id="gOn" class="hidden">
+        <div class="row wrap" style="margin-bottom:12px">
+          <span class="pill" id="gOnPill">جلسة جماعية جارية</span>
+          <b id="gTaskTx" style="font-size:13px;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</b>
+        </div>
+        <div class="row wrap">
+          <button class="btn ghost" id="gInvite2">دعوة شريك آخر</button>
+          <button class="btn red" id="gStop">إنهاء الجلسة الجماعية</button>
+        </div>
       </div>
+      <div id="gChips"></div>
+      <div id="gLink"></div>
+      <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:14px">
+        <p class="note" style="margin-bottom:10px">رابط مجموعة واتساب الدائمة: أنشئ مجموعة لرفاق المذاكرة، ثم من «إعدادات المجموعة ← دعوة عبر رابط» انسخ الرابط والصقه هنا — يُرفَق تلقائيًا بكل دعوة.</p>
+        <div class="row">
+          <input type="text" id="waGroupIn" placeholder="https://chat.whatsapp.com/..." style="flex:1 1 auto;direction:ltr;text-align:left">
+          <button class="btn sm" id="waSave">حفظ</button>
+        </div>
+        <div id="waLinkNow" class="row wrap" style="margin-top:10px"></div>
+      </div>
+    </div>
+
+    <!-- zoom meeting room -->
+    <div class="card" id="zoomCard">
+      <h3><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="flex:0 0 auto"><path d="M1.437 8.502A1.44 1.44 0 0 0 0 9.94v4.12a1.44 1.44 0 0 0 1.437 1.438l4.313-.001V8.501L1.437 8.502zM6.75 8.5v7h10.062c1.16 0 1.938-.83 1.938-1.937v-.438l4.25 2.876V7l-4.25 2.875v-.438c0-1.107-.777-1.937-1.938-1.937H6.75z"/></svg> اجتماع زووم للجلسة الجماعية</h3>
+      <p class="note">أنشئ اجتماعًا في زووم (مجانًا من تطبيق أو موقع zoom.us)، انسخ رابط الدعوة والصقه هنا — يُرفَق برسائل الدعوة تلقائيًا إذا لم يكن رابط مجموعة واتساب مضبوطًا. زر «فتح زووم» يظهر أعلى الموقع طوال الجلسة الجماعية، ومراقبة الانضباط تبقى فعّالة أثناء الجلسة.</p>
+      <div class="row" style="margin-top:12px">
+        <input type="text" id="zoomIn" placeholder="https://zoom.us/j/... (أو أي رابط اجتماع)" style="flex:1 1 auto;direction:ltr;text-align:left">
+        <button class="btn sm" id="zoomSave">حفظ</button>
+      </div>
+      <div id="zoomNow" class="row wrap" style="margin-top:10px"></div>
     </div>
   </section>
 
@@ -468,6 +521,7 @@ footer b{color:var(--gold)}
   <div class="fpb"><i id="fPb"></i></div>
   <div class="fctl">
     <button class="btn" id="fStartPause">إيقاف مؤقت</button>
+    <button class="btn ghost hidden" id="fWa">فتح واتساب — الجلسة الجماعية</button>
     <button class="btn ghost" id="fAbort">إخلال — إنهاء الجلسة</button>
   </div>
 </div>
@@ -503,6 +557,40 @@ footer b{color:var(--gold)}
   </div>
 </div>
 
+<!-- ============ WHATSAPP INVITE MODAL ============ -->
+<div class="modal" id="waModal">
+  <div class="mb">
+    <h3><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" style="flex:0 0 auto"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> دعوة الشركاء عبر واتساب</h3>
+    <div class="msub">اضغط «إرسال الدعوة» أمام كل رفيق — تُفتح محادثته في واتساب برسالة جاهزة تحمل تفاصيل الجلسة.</div>
+    <ul id="waMList"></ul>
+    <div class="row" style="margin-top:14px">
+      <input type="text" id="waMGroupIn" placeholder="رابط مجموعة واتساب الدائمة (chat.whatsapp.com/...)" style="flex:1 1 auto;direction:ltr;text-align:left">
+      <button class="btn sm" id="waMSave">حفظ الرابط</button>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <input type="text" id="waMZoomIn" placeholder="أو رابط اجتماع زووم (zoom.us/j/...)" style="flex:1 1 auto;direction:ltr;text-align:left">
+      <button class="btn sm" id="waMZoomSave">حفظ زووم</button>
+    </div>
+    <div id="waMGroup" class="hidden" style="margin-top:10px">
+      <div class="row wrap">
+        <a class="btn blue sm" id="waMLink" href="#" target="_blank" rel="noopener">فتح مجموعة المذاكرة</a>
+        <button class="btn ghost sm" id="waMGLCopy">نسخ الرابط</button>
+      </div>
+    </div>
+    <div id="waMFallback" class="hidden" style="margin-top:12px">
+      <p class="note">منع المتصفح فتح واتساب تلقائيًا — انسخ هذا الرابط وافتحه في تبويب جديد:</p>
+      <input type="text" id="waMUrl" readonly style="direction:ltr;text-align:left;margin:8px 0">
+      <div class="row"><button class="btn ghost sm" id="waMUrlCopy">نسخ الرابط</button><button class="btn ghost sm" id="waMOpen">فتح في تبويب</button></div>
+    </div>
+    <div style="margin-top:14px">
+      <p class="note">أو انسخ رسالة الدعوة كاملة وأرسلها في مجموعة واتساب:</p>
+      <textarea id="waMMsg" readonly rows="5" style="margin-top:8px"></textarea>
+      <button class="btn ghost sm" id="waMCopy" style="margin-top:8px">نسخ رسالة الدعوة</button>
+    </div>
+    <div class="mrow"><button class="btn ghost" id="waMClose">إغلاق</button></div>
+  </div>
+</div>
+
 <div id="toasts"></div>
 
 <!-- ============ BOTTOM NAV ============ -->
@@ -532,7 +620,7 @@ function todayKey(){const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth
 const DEF={v:3,study:25,break:5,full:true,watch:true,quiz:true,voice:true,
   remindH:17,remindM:0,remindOn:false,onboarded:false,
   minutesToday:0,dayKey:'',sessions:0,distractions:0,chainToday:0,chainBest:0,
-  quizTaken:0,quizRight:0,contFlow:false,roomOpen:false,
+  quizTaken:0,quizRight:0,contFlow:false,waGroup:'',zoomLink:'',grp:{on:false,at:0,dur:0,task:''},
   tasks:[],logs:[],habits:{},routine:{},contacts:[],qb:[],favQ:[]};
 let S=load();
 function load(){
@@ -554,6 +642,7 @@ function applySettings(){
 }
 function paint(){
   const r=remaining();
+  if(S.grp&&S.grp.on){$('wbT').textContent=(T.running&&!T.paused)?fmtH(r):(S.grp.dur?fmtH(S.grp.dur):'—')}
   $('timeTxt').textContent=fmtH(r);
   $('fTime').textContent=fmtH(r);
   $('modeTxt').textContent=T.mode==='study'?'جلسة مذاكرة':'استراحة';
@@ -597,6 +686,7 @@ function phaseDone(){
   const wasStudy=T.mode==='study';
   disableWatch();
   if(wasStudy){
+    const grpOn=S.grp&&S.grp.on;
     S.sessions++;S.minutesToday+=S.study;S.chainToday++;S.chainBest=Math.max(S.chainBest,S.chainToday);
     S.contFlow=true;
     const t=getTask(T.currentTaskId);
@@ -606,7 +696,9 @@ function phaseDone(){
     applySettings();
     /* break auto-starts */
     start();
+    if(grpOn){S.grp.on=false;save()}
     showPhaseEnd('study');
+    if(grpOn)toast('gold','اكتملت الجلسة الجماعية عبر واتساب — أحسنتم أيها الأبطال');
   }else{
     if(S.voice)speak('انتهت الاستراحة. عُد إلى الحلبة.');
     T.mode='study';T.running=false;T.paused=false;
@@ -621,6 +713,7 @@ function abortSession(){
   if(T.mode!=='study'||(!T.running&&!T.paused))return;
   const done=Math.max(0,S.study-remaining()/60);
   S.distractions++;S.contFlow=false;S.chainToday=0;
+  if(S.grp&&S.grp.on){S.grp.on=false;save()}
   if(done>=1){S.minutesToday+=Math.round(done);logSession(false,'أنهيت الجلسة مبكرًا بعد '+Math.round(done)+' دقيقة',T.currentTaskId,Math.round(done))}
   toast('bad','سُجّل إخلال — انضباطك تراجع. عُد أقوى.');
   if(S.voice)speak('إخلال. لا بأس، البطل ينهض.');
@@ -663,12 +756,14 @@ async function relock(){
     try{if('wakeLock'in navigator&&!wl){wl=await navigator.wakeLock.request('screen')}}catch(e){}
   }
 }
+let WAG=0;
 function markAway(reason){if(!AWAY)AWAY={at:now(),reason,hadLock:!!wl}}
 function markBack(){
   if(!AWAY)return;
   const info=AWAY;AWAY=null;
   const dur=now()-info.at;
-  if(!S.watch||!T.running||T.mode!=='study'||T.paused||dur<1200)return;
+  if(now()<WAG)return;
+  if(!S.watch||!T.running||T.mode!=="study"||T.paused||dur<1200)return;
   const secs=Math.round(dur/1000);
   const idleBefore=Math.max(0,(info.at-lastActivity)/1000);
   if(info.hadLock){registerEscape(secs);return}
@@ -1053,47 +1148,185 @@ function renderHabits(){
 </script>
 
 <script>
-/* ============ contacts + video room ============ */
-const ROOM='ChampionGoal_StudyRoom';
-function roomUrl(){
-  return 'https://meet.jit.si/'+ROOM+'#config.startWithVideoMuted=true&config.startWithAudioMuted=true&config.prejoinPageEnabled=true'
-}
+/* ============ contacts ============ */
 function renderContacts(){
   const ul=$('ctList');ul.innerHTML='';
   if(!S.contacts.length){ul.innerHTML='<li class="item" style="justify-content:center;color:var(--mut)">لا يوجد شركاء بعد — أضف رقم واتساب لرفيقك بالأعلى.</li>';return}
   S.contacts.forEach(c=>{
     const li=document.createElement('li');li.className='item citem';
     li.innerHTML='<div class="grow"><div class="cn">'+esc(c.name)+'</div><div class="cp">'+esc(c.phone)+'</div></div>'
-      +'<button class="call">دعوة واتساب</button>'
+      +'<button class="call">'+'<svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" style="flex:0 0 auto"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>'+' دعوة واتساب</button>'
       +'<button class="del"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button>';
-    li.querySelector('.call').onclick=()=>{
-      const msg=encodeURIComponent('مرحبًا '+c.name+'! أذاكر الآن على Champion Goal — انضم لغرفة الفيديو المشتركة:\n'+roomUrl()+'\n(الغرفة مكتومة البدء: افتحها ثم فعّل الكاميرا بنفسك)');
-      window.open('https://wa.me/'+String(c.phone).replace(/[^0-9]/g,'')+'?text='+msg,'_blank');
-      toast('ok','فُتحت واتساب لإرسال الدعوة إلى '+c.name)
-    };
-    li.querySelector('.del').onclick=()=>{S.contacts=S.contacts.filter(x=>x.id!==c.id);save();renderContacts()};
+    li.querySelector('.call').onclick=()=>inviteContact(c);
+    li.querySelector('.del').onclick=()=>{S.contacts=S.contacts.filter(x=>x.id!==c.id);save();renderContacts();renderGroup()};
     ul.appendChild(li)
   })
 }
-function openRoom(){
-  S.roomOpen=true;save();
-  const w=$('roomWrap');
-  const old=w.querySelector('iframe');if(old)old.remove();
-  $('roomOff').classList.add('hidden');
-  const f=document.createElement('iframe');
-  f.src=roomUrl();
-  f.allow='camera; microphone; fullscreen; display-capture';
-  f.style.cssText='display:block;width:100%;height:420px;border:0';
-  w.insertBefore(f,w.firstChild);
-  toast('ok','فُتحت الغرفة — الكاميرا والمايك مكتومان حتى تفعّلهما بنفسك')
+</script>
+
+<script>
+/* ============ group session over WhatsApp (top-of-site) ============ */
+const WASVG='<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.38 8.38 0 0 1-4-1L3 20l1-5.5a8.38 8.38 0 0 1-1-4 8.5 8.5 0 1 1 17 0z"/></svg>';
+const waDigits=p=>String(p).replace(/[^0-9]/g,'');
+function waLink(){const g=(S.waGroup||'').trim();if(g)return g;const z=(S.zoomLink||'').trim();return z}
+function inviteMsg(c){
+  const t=getTask(T.currentTaskId);
+  const task=t?('\n• المهمة: '+t.text+(t.subject?' — '+t.subject:'')):'';
+  const d=new Date();
+  let m=(c?('مرحبًا '+c.name+'! '):'مرحبًا! ');
+  if(S.grp&&S.grp.on){
+    m+='جلسة مذاكرة جماعية جارية الآن على Champion Goal.'+task;
+    if(S.grp.dur)m+='\n• المدة: '+(S.grp.dur<60?'أقل من دقيقة':((S.grp.dur/60)%1?(S.grp.dur/60).toFixed(1).replace('.0',''):Math.round(S.grp.dur/60))+' دقيقة');
+    if(T.running&&!T.paused&&T.mode==='study')m+='\n• المتبقي: '+fmtH(remaining());
+    m+='\n• بدأت الساعة '+pad(new Date(S.grp.at).getHours())+':'+pad(new Date(S.grp.at).getMinutes());
+  }else{
+    m+='أدعوك لجلسة مذاكرة جماعية على Champion Goal — انضم لي.'+task+'\n• المدة: '+S.study+' دقيقة';
+  }
+  m+='\n• الوقت الآن: '+pad(d.getHours())+':'+pad(d.getMinutes());
+  const link=waLink();
+  if(link)m+='\n• غرفة الجلسة:\n'+link;
+  m+='\n— من Champion Goal، نظام المذاكرة الصارم (المطور Rowyda)';
+  return m
 }
-function closeRoom(){
-  S.roomOpen=false;save();
-  const f=$('roomWrap').querySelector('iframe');if(f)f.remove();
-  $('roomOff').classList.remove('hidden');
-  toast('gold','أُغلق غرفة الفيديو')
+function waGrace(){WAG=now()+((S.grp&&S.grp.on)?300000:60000)}
+function inviteContact(c){
+  const url='https://wa.me/'+waDigits(c.phone)+'?text='+encodeURIComponent(inviteMsg(c));
+  const w=window.open(url,'_blank');
+  if(!w){
+    openInviteModal(true);
+    $('waMFallback').classList.remove('hidden');
+    $('waMUrl').value=url;
+    toast('bad','منع المتصفح فتح واتساب — استخدم الرابط الظاهر في نافذة الدعوة');
+    return
+  }
+  waGrace();
+  toast('ok','فُتح واتساب لإرسال الدعوة إلى '+c.name)
 }
-function joinRoom(){window.open(roomUrl(),'_blank')}
+function openWaRoom(){
+  const url=waLink();
+  if(!url){openInviteModal();toast('gold','اضبط رابط مجموعة واتساب أو رابط زووم من تبويب «الرفقاء» ليفتح الزرُّ غرفة الجلسة مباشرة');return}
+  const w=window.open(url,'_blank');
+  if(!w){copyText(url,'منع المتصفح الفتح — نُسخ الرابط، الصقه في تبويب جديد');return}
+  waGrace()
+}
+function openInviteModal(keepFallback){
+  const ul=$('waMList');ul.innerHTML='';
+  if(!S.contacts.length){ul.innerHTML='<li class="item" style="justify-content:center;color:var(--mut)">لا شركاء محفوظين — أضف أرقامهم من تبويب «الرفقاء» ثم ادعُهم من هنا.</li>'}
+  else S.contacts.forEach(c=>{
+    const url='https://wa.me/'+waDigits(c.phone)+'?text='+encodeURIComponent(inviteMsg(c));
+    const li=document.createElement('li');li.className='item citem';
+    li.innerHTML='<div class="grow"><div class="cn">'+esc(c.name)+'</div><div class="cp">'+esc(c.phone)+'</div></div>'
+      +'<a class="call" href="'+esc(url)+'" target="_blank" rel="noopener">'+WASVG+' إرسال الدعوة</a>';
+    li.querySelector('a.call').addEventListener('click',waGrace);
+    ul.appendChild(li)
+  });
+  const gl=(S.waGroup||'').trim();
+  $('waMGroup').classList.toggle('hidden',!gl);
+  if(gl){$('waMLink').href=gl}
+  $('waMMsg').value=inviteMsg(null);
+  if(!keepFallback){$('waMUrl').value='';$('waMFallback').classList.add('hidden')}
+  $('waMGroupIn').value='';
+  $('waMZoomIn').value='';
+  $('waModal').classList.add('on')
+}
+function startGroup(){
+  if(S.grp&&S.grp.on)return toast('bad','الجلسة الجماعية جارية بالفعل');
+  const t=getTask(T.currentTaskId);
+  S.grp={on:true,at:now(),dur:S.study*60,task:t?(t.text+(t.subject?' — '+t.subject:'')):''};
+  if(T.mode==='break'&&(T.running||T.paused)){
+    T.endAt=now();tickLoop();
+    toast('gold','تخطَّينا الاستراحة — انطلقت الجلسة الجماعية فورًا')
+  }
+  else if(!T.running){start()}
+  save();renderGroup();
+  toast('ok','انطلقت الجلسة الجماعية — ادعُ رفاقك بضغطة واحدة');
+  setTimeout(()=>openInviteModal(),400)
+}
+function endGroup(){
+  if(!S.grp||!S.grp.on)return;
+  S.grp.on=false;S.grp.at=0;S.grp.task='';save();renderGroup();
+  toast('gold','انتهت الجلسة الجماعية عبر واتساب')
+}
+function renderGroup(){
+  const on=!!(S.grp&&S.grp.on);
+  $('waBar').classList.toggle('on',on);
+  document.body.classList.toggle('haswabar',on);
+  $('fWa').classList.toggle('hidden',!on);
+  $('gOn').classList.toggle('hidden',!on);
+  $('gOff').classList.toggle('hidden',on);
+  const gl=(S.waGroup||'').trim();
+  if(on){
+    $('wbOpenTx').textContent=gl?'فتح واتساب':'فتح زووم';
+    $('fWa').textContent=gl?'فتح واتساب — الجلسة الجماعية':'فتح زووم — الجلسة الجماعية';
+    $('wbTask').textContent=S.grp.task||'مذاكرة جماعية';
+    $('gTaskTx').textContent=S.grp.task||'مذاكرة حرة';
+    $('gOnPill').textContent='جارية — بدأت '+pad(new Date(S.grp.at).getHours())+':'+pad(new Date(S.grp.at).getMinutes());
+    $('wbT').textContent=(T.running&&!T.paused)?fmtH(remaining()):(S.grp.dur?fmtH(S.grp.dur):'—')
+  }
+  const box=$('gChips');box.innerHTML='';
+  if(!S.contacts.length){
+    box.innerHTML='<span class="note">لا شركاء محفوظين بعد — أضف أرقام واتساب من تبويب «الرفقاء» وستظهر أزرار دعوتهم هنا فورًا.</span>'
+  }else{
+    S.contacts.slice(0,4).forEach(c=>{
+      const b=document.createElement('button');b.className='gchip';b.innerHTML=WASVG+'<span>'+esc(c.name)+'</span>';
+      b.onclick=()=>inviteContact(c);box.appendChild(b)
+    });
+    if(S.contacts.length>4){
+      const m=document.createElement('button');m.className='gchip';m.textContent='+'+(S.contacts.length-4)+' أكثر';
+      m.onclick=()=>openInviteModal();box.appendChild(m)
+    }
+  }
+  $('gLink').innerHTML=gl
+    ?('<span class="glt">رابط المجموعة:</span> <a href="'+esc(gl)+'" target="_blank" rel="noopener">'+esc(gl)+'</a>')
+    :'<span class="note">لم يُضبط رابط مجموعة واتساب — إن وُضع رابط زووم فسيُرفَق بالدعوات تلقائيًا، وإلا فستكون رسالة دعوة بدون رابط غرفة.</span>'
+}
+function saveZoom(v){
+  const t=String(v||'').trim();
+  if(t&&!/^https?:\/\//i.test(t))return toast('bad','رابط زووم يجب أن يبدأ بـ https:// — من زووم: الاجتماعات ← نسخ رابط الدعوة');
+  S.zoomLink=t;save();renderZoom();
+  toast('ok',t?'حُفظ رابط زووم — سيُرفَق بالدعوات ويظهر زر فتحه أعلى الموقع عند غياب رابط المجموعة':'أُزيل رابط زووم')
+}
+function renderZoom(){
+  const box=$('zoomNow');if(!box)return;
+  const z=(S.zoomLink||'').trim();
+  if(document.activeElement!==$('zoomIn'))$('zoomIn').value=z;
+  if(!z){box.innerHTML='<span class="note">غير مضبوط — لن يُرفَق رابط زووم بالدعوات.</span>';return}
+  box.innerHTML='<span class="chip" style="direction:ltr;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(z)+'</span>'
+    +'<button class="btn ghost sm" id="zmOpen">فتح</button>'
+    +'<button class="btn ghost sm" id="zmCopy">نسخ</button>';
+  $('zmOpen').onclick=()=>{const w=window.open(z,'_blank');if(w)waGrace()};
+  $('zmCopy').onclick=()=>copyText(z,'نُسخ رابط زووم')
+}
+function renderMatesLink(){
+  const box=$('waLinkNow');if(!box)return;
+  const gl=(S.waGroup||'').trim();
+  if(document.activeElement!==$('waGroupIn'))$('waGroupIn').value=gl;
+  if(!gl){box.innerHTML='<span class="note">غير مضبوط — الدعوات سترفق رابط زووم إن وُضع في بطاقة «اجتماع زووم» بالأسفل، وإلا فتكون رسالة دعوة بدون رابط.</span>';return}
+  box.innerHTML='<span class="chip" style="direction:ltr;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(gl)+'</span>'
+    +'<button class="btn ghost sm" id="waOpen">فتح</button>'
+    +'<button class="btn ghost sm" id="waCopy">نسخ</button>';
+  $('waOpen').onclick=()=>{const w=window.open(gl,'_blank');if(w)waGrace()};
+  $('waCopy').onclick=()=>copyText(gl,'نُسخ رابط المجموعة')
+}
+function copyText(txt,okMsg){
+  const done=()=>toast('ok',okMsg||'نُسخ');
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>legacyCopy(txt,done));return}
+  }catch(e){}
+  legacyCopy(txt,done)
+}
+function legacyCopy(txt,done){
+  try{
+    const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();done()
+  }catch(e){toast('bad','تعذّر النسخ التلقائي — حدّد الرسالة وانسخها يدويًا')}
+}
+function saveWaGroup(v){
+  const t=String(v||'').trim();
+  if(t&&!/^https?:\/\//i.test(t))return toast('bad','الرابط يجب أن يبدأ بـ https:// — من واتساب: إعدادات المجموعة ← «دعوة عبر رابط» ← نسخ الرابط');
+  S.waGroup=t;save();renderGroup();renderMatesLink();
+  toast('ok',t?'حُفظ رابط المجموعة — سيُرفق بكل دعوة وتظهر الجلسة في أعلى الموقع':'أُزيل رابط المجموعة')
+}
 </script>
 
 <script>
@@ -1197,7 +1430,7 @@ function updateChain(){
 function renderAll(){
   renderTasks();renderJournal();renderStats();renderHabits();
   renderContacts();renderQB();renderQuoteList();renderFav();
-  renderRoutine();
+  renderRoutine();renderGroup();renderMatesLink();renderZoom();
   paint();updateChain()
 }
 </script>
@@ -1343,13 +1576,27 @@ function boot(){
     const n=$('ctName').value.trim(),p=$('ctPhone').value.trim();
     if(!n||!p||p.replace(/[^0-9]/g,'').length<8)return toast('bad','أدخل اسمًا ورقمًا صحيحًا (مع كود الدولة)');
     S.contacts.push({id:uid(),name:n,phone:p});
-    save();renderContacts();
+    save();renderContacts();renderGroup();
     $('ctName').value='';$('ctPhone').value='';
     toast('ok','حُفظ الشريك — ادعه الآن بزر «دعوة واتساب»')
   };
-  $('roomOpenBtn').onclick=openRoom;
-  $('roomCloseBtn').onclick=closeRoom;
-  $('roomJoinBtn').onclick=joinRoom;
+  $('zoomSave').onclick=()=>saveZoom($('zoomIn').value);
+  /* group + whatsapp */
+  $('gStart').onclick=startGroup;
+  $('gStop').onclick=endGroup;
+  $('gInvite').onclick=()=>openInviteModal();
+  $('gInvite2').onclick=()=>openInviteModal();
+  $('wbOpen').onclick=openWaRoom;
+  $('wbEnd').onclick=endGroup;
+  $('fWa').onclick=openWaRoom;
+  $('waMClose').onclick=()=>{$('waModal').classList.remove('on')};
+  $('waMCopy').onclick=()=>copyText($('waMMsg').value,'نُسخت رسالة الدعوة — الصقها في مجموعة واتساب');
+  $('waMUrlCopy').onclick=()=>copyText($('waMUrl').value,'نُسخ رابط الدعوة');
+  $('waMOpen').onclick=()=>{const u=$('waMUrl').value.trim();if(u)window.open(u,'_blank')};
+  $('waMSave').onclick=()=>saveWaGroup($('waMGroupIn').value);
+  $('waMZoomSave').onclick=()=>saveZoom($('waMZoomIn').value);
+  $('waMGLCopy').onclick=()=>copyText((S.waGroup||'').trim(),'نُسخ رابط المجموعة');
+  $('waSave').onclick=()=>saveWaGroup($('waGroupIn').value);
   /* quiz bank */
   $('qbAddBtn').onclick=()=>{
     const q=$('qbQ').value.trim(),a=$('qbA1').value.trim(),b=$('qbA2').value.trim(),c=$('qbA3').value.trim(),sub=$('qbSub').value.trim();
@@ -1470,7 +1717,6 @@ function boot(){
   };
   if(S.remindOn&&('Notification'in window)&&Notification.permission==='granted'){$('notifBtn').classList.add('on');$('notifTxt').textContent='التذكير مفعّل'}
   /* restore room */
-  if(S.roomOpen)openRoom();
   /* if session was running when page closed (edge) -> idle safely */
   if(T.running||T.paused){goIdle()}
   applySettings();
@@ -1484,4 +1730,3 @@ window.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>
 </html>
-
